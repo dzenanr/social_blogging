@@ -1,61 +1,28 @@
-                                        part of social_blogging; 
- 
-// lib/social/blogging/init.dart 
- 
-initSocialBlogging(var entries) { 
-  _initBlogs(entries); 
-} 
- 
-_initBlogs(var entries) { 
-  Blog blog = new Blog(entries.blogs.concept); 
-  blog.link = Uri.parse("http://news.dartlang.org/2012/08/tracking-darts-m1-progress.html"); 
-  blog.name = "value0"; 
-  entries.blogs.add(blog); 
- 
-  blog = new Blog(entries.blogs.concept); 
-  blog.link = Uri.parse("http://www.drdobbs.com/open-source/dart-build-html5-apps-fast/240005631"); 
-  blog.name = "value1"; 
-  entries.blogs.add(blog); 
- 
-  blog = new Blog(entries.blogs.concept); 
-  blog.link = Uri.parse("http://www.dartlang.org/docs/editor/"); 
-  blog.name = "value2"; 
-  entries.blogs.add(blog); 
- 
-  blog = new Blog(entries.blogs.concept); 
-  blog.link = Uri.parse("http://hilite.me/"); 
-  blog.name = "value3"; 
-  entries.blogs.add(blog); 
- 
-  blog = new Blog(entries.blogs.concept); 
-  blog.link = Uri.parse("http://jsonformatter.curiousconcept.com/"); 
-  blog.name = "value4"; 
-  entries.blogs.add(blog); 
- 
-  blog = new Blog(entries.blogs.concept); 
-  blog.link = Uri.parse("http://code.google.com/p/dart-enumerators/"); 
-  blog.name = "value5"; 
-  entries.blogs.add(blog); 
- 
-  blog = new Blog(entries.blogs.concept); 
-  blog.link = Uri.parse("http://code.google.com/p/dart-enumerators/"); 
-  blog.name = "value6"; 
-  entries.blogs.add(blog); 
- 
-  blog = new Blog(entries.blogs.concept); 
-  blog.link = Uri.parse("http://www.drdobbs.com/open-source/dart-build-html5-apps-fast/240005631"); 
-  blog.name = "value7"; 
-  entries.blogs.add(blog); 
- 
-  blog = new Blog(entries.blogs.concept); 
-  blog.link = Uri.parse("http://jsonformatter.curiousconcept.com/"); 
-  blog.name = "value8"; 
-  entries.blogs.add(blog); 
- 
-  blog = new Blog(entries.blogs.concept); 
-  blog.link = Uri.parse("http://code.google.com/p/dart/wiki/Contributing"); 
-  blog.name = "value9"; 
-  entries.blogs.add(blog); 
- 
-} 
- 
+part of social_blogging;
+
+// lib/social/blogging/init.dart
+
+initSocialBlogging(var entries) {
+  _initBlogs(entries);
+}
+
+_initBlogs(var entries) {
+  var blogs = entries.blogs;
+  var blogConcept = blogs.concept;
+
+  var blog01 = new Blog(blogConcept);
+  blog01.link = Uri.parse('http://www.scribegriff.com/studios/');
+  blog01.name = "scribeGriff Studios";
+  blogs.add(blog01);
+
+  var blog02 = new Blog(blogConcept);
+  blog02.link = Uri.parse('http://blog.sethladd.com/');
+  blog02.name = "Seth Ladd's Blog";
+  blogs.add(blog02);
+
+  var blog03 = new Blog(blogConcept);
+  blog03.link = Uri.parse('http://dzenanr.github.io/');
+  blog03.name = "On Dart";
+  blogs.add(blog03);
+}
+
