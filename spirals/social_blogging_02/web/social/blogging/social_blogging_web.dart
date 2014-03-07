@@ -2,11 +2,10 @@
 // web/social/blogging/social_blogging_web.dart 
  
 import "dart:html"; 
- 
-import "package:dartling/dartling.dart"; 
+  
 import "package:dartling_default_app/dartling_default_app.dart"; 
  
-import "package:social_blogging/social_blogging.dart"; 
+import "package:social_blogging/social_blogging.dart";
  
 initSocialData(SocialRepo socialRepo) { 
    var socialModels = 
@@ -16,7 +15,6 @@ initSocialData(SocialRepo socialRepo) {
        socialModels.getModelEntries(SocialRepo.socialBloggingModelCode); 
    initSocialBlogging(socialBloggingEntries); 
    socialBloggingEntries.display(); 
-   socialBloggingEntries.displayJson(); 
 } 
  
 showSocialData(SocialRepo socialRepo) { 

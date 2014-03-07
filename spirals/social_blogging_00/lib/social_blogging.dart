@@ -1,6 +1,6 @@
-
-// lib/social_blogging.dart
-
+ 
+// lib/social_blogging.dart 
+ 
 /*
 http://opensource.org/licenses/
 
@@ -32,25 +32,24 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-
-
-library social_blogging;
-
-//import "dart:convert";
-//import "dart:math";
-
-import "package:dartling/dartling.dart";
-
-part "social/blogging/json/data.dart";
-part "social/blogging/json/model.dart";
-
-part "social/blogging/init.dart";
-
-part "social/blogging/blogs.dart";
-
-part "gen/social/blogging/entries.dart";
-part "gen/social/blogging/blogs.dart";
-
-part "gen/social/models.dart";
-part "gen/social/repository.dart";
-
+ 
+ 
+library social_blogging; 
+ 
+//import "dart:convert"; 
+//import "dart:math"; 
+ 
+import "package:dartling/dartling.dart"; 
+ 
+part "repository.dart"; 
+ 
+part "gen/social/models.dart"; 
+part "gen/social/blogging/entries.dart"; 
+part "gen/social/blogging/blogs.dart"; 
+ 
+part "social/domain.dart"; 
+part "social/blogging/model.dart"; 
+part "social/blogging/blogs.dart"; 
+part "social/blogging/json/data.dart"; 
+part "social/blogging/json/model.dart"; 
+ 

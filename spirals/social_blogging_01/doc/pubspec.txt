@@ -1,5 +1,7 @@
+pubspec.yaml
+
 name: social_blogging
-version: 0.0.2
+version: 0.0.1
 author: Dzenan Ridjanovic <dzenanr@gmail.com>
 description: social_blogging application that uses dartling for its model.
 homepage: http://ondart.me/
@@ -9,8 +11,20 @@ documentation: http://goo.gl/TRRb0e
 dependencies:
   browser: '>=0.9.0 <0.10.0'
   dartling:
+    path: 'C:\Users\ridjanod.FSA-RIDJANOD-2\dart\model\dartling'
+  dartling_default_app:
+    path: 'C:\Users\ridjanod.FSA-RIDJANOD-2\dart\model\dartling_default_app'
+
+dependencies:
+  browser: '>=0.9.0 <0.10.0'
+  dartling:
     git: 'https://github.com/dzenanr/dartling.git'
     version: '>=2.0.0 <3.0.0'
   dartling_default_app:
     git: 'https://github.com/dzenanr/dartling_default_app.git'
     version: '>=1.0.5 <2.0.0'
+    
+dependencies:
+  browser: '>=0.9.0 <0.10.0'
+  dartling: '>=2.0.0 <3.0.0'
+  dartling_default_app: '>=1.0.5 <2.0.0'

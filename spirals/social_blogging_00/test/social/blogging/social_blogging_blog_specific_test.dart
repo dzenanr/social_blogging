@@ -1,5 +1,5 @@
 
-// test/social/blogging/social_blogging_test.dart
+// test/social/blogging/social_blogging_blog_specific_test.dart
 
 import "package:unittest/unittest.dart";
 import "package:dartling/dartling.dart";
@@ -18,46 +18,23 @@ class BlogReaction implements ActionReactionApi {
   }
 }
 
-testSocialBlogging(Repo repo, String domainCode, String modelCode) {
+testSocialBloggingBlog( 
+    Repository repository, String domainCode, String modelCode) { 
   var models;
   var session;
   var entries;
-  group("Testing ${domainCode}.${modelCode}", () {
+  group("Testing Social.Blogging.Blog", () {
     setUp(() {
-      models = repo.getDomainModels(domainCode);
+      models = repository.getDomainModels(domainCode);
       session = models.newSession();
       entries = models.getModelEntries(modelCode);
       expect(entries, isNotNull);
-      initSocialBlogging(entries);
+      entries.init();
     });
     tearDown(() {
       entries.clear();
-      var blogs = entries.blogs;
-      expect(blogs.isEmpty, isTrue);
     });
-    test("Not Empty Entries Test", () {
-      expect(entries.isEmpty, isFalse);
-    });
-    test("Empty Entries Test", () {
-      entries.clear();
-      expect(entries.isEmpty, isTrue);
-    });
-    test('From Model to JSON', () {
-      var json = entries.toJson();
-      expect(json, isNotNull);
-
-      print(json);
-    });
-    test('From JSON to Model', () {
-      var blogs = entries.blogs;
-      blogs.clear();
-      expect(blogs.isEmpty, isTrue);
-      entries.fromJsonToData();
-      expect(blogs.isEmpty, isFalse);
-
-      blogs.display(title: 'From JSON to Project Model');
-    });
-    test('Add Blog Required Error', () {
+    test('Add blog required error', () {
       var blogs = entries.blogs;
       var blogConcept = blogs.concept;
       var blogCount = blogs.length;
@@ -69,147 +46,106 @@ testSocialBlogging(Repo repo, String domainCode, String modelCode) {
       expect(blogs.length, equals(blogCount));
       expect(blogs.errors.length, equals(1));
       expect(blogs.errors.toList()[0].category, equals('required'));
-      blogs.errors.display(title: 'Add Blog Required Error');
+      blogs.errors.display(title: 'Add blog required rrror');
     });
-    test('Add Blog Unique Error', () {
+    test('Add blog unique error', () {
       var blogs = entries.blogs;
       var blogConcept = blogs.concept;
       var blogCount = blogs.length;
       var blog = new Blog(blogConcept);
       expect(blog, isNotNull);
-      blog.link = Uri.parse('http://dzenanr.github.io/');
+      blog.link = Uri.parse('http://www.villa-marrakech.ma/');
       blog.name = "My Blog";
       var added = blogs.add(blog);
       expect(added, isFalse);
       expect(blogs.length, equals(blogCount));
       expect(blogs.errors.length, equals(1));
       expect(blogs.errors.toList()[0].category, equals('unique'));
-      blogs.errors.display(title: 'Add Blog Unique Error');
+      blogs.errors.display(title: 'Add blog unique error');
     });
-    test('Add Blog Required and Unique Error', () {
+    test('Add blog required and unique error', () {
       var blogs = entries.blogs;
       var blogConcept = blogs.concept;
       var blogCount = blogs.length;
       var blog = new Blog(blogConcept);
       expect(blog, isNotNull);
-      blog.link = Uri.parse('http://dzenanr.github.io/');
+      blog.link = Uri.parse('http://www.villa-marrakech.ma/');
       var added = blogs.add(blog);
       expect(added, isFalse);
       expect(blogs.length, equals(blogCount));
       expect(blogs.errors.length, equals(2));
       expect(blogs.errors.toList()[0].category, equals('required'));
       expect(blogs.errors.toList()[1].category, equals('unique'));
-      blogs.errors.display(title: 'Add Blog Required and Unique Error');
+      blogs.errors.display(title: 'Add blog required and unique error');
     });
-    test('Add Blog Pre Validation Error', () {
+    test('Add blog pre validation error', () {
       var blogs = entries.blogs;
       var blogConcept = blogs.concept;
       var blogCount = blogs.length;
       var blog = new Blog(blogConcept);
       expect(blog, isNotNull);
       blog.link = Uri.parse('http://shailen.github.io/');
-      blog.name =
-          'A new blog with a long name that cannot be accepted';
+      blog.name = 'A new blog with a long name that cannot be accepted';
       var added = blogs.add(blog);
       expect(added, isFalse);
       expect(blogs.length, equals(blogCount));
       expect(blogs.errors, hasLength(1));
       expect(blogs.errors.toList()[0].category, equals('pre'));
-      blogs.errors.display(title:'Add Blog Pre Validation');
+      blogs.errors.display(title:'Add blog pre validation error');
     });
-    test('Not Find Blog by New Oid', () {
-      var dartlingOid = new Oid.ts(1393437933976);
+    test('Blog not found by new oid', () {
+      var dartlingOid = new Oid.ts(1345648254063);
       var blogs = entries.blogs;
       Blog blog = blogs.singleWhereOid(dartlingOid);
       expect(blog, isNull);
     });
-    /*
-    test('Find Blog by Oid in JSON', () {
+    test('Find blog by oid in JSON', () {
+      var json = entries.fromModelToJson(); 
       var blogs = entries.blogs;
       blogs.clear();
       expect(blogs.isEmpty, isTrue);
-      entries.fromJsonToData();
+      entries.fromJsonToModel(json);
       expect(blogs.isEmpty, isFalse);
 
-      var dartlingOid = new Oid.ts(1393425386488);
+      var randomBlog = blogs.random();
+      var dartlingOid = randomBlog.oid;
       var blog = blogs.singleWhereOid(dartlingOid);
       expect(blog, isNotNull);
-      expect(blog.name, equals("Seth Ladd's Blog"));
     });
-    */
-    test('Find Blog by Id', () {
+    test('Find blog by id', () {
       var blogs = entries.blogs;
       var blogConcept = blogs.concept;
       Id id = new Id(blogConcept);
       expect(id.length, equals(1));
-      var searchLink = Uri.parse('http://dzenanr.github.io/');
+      var searchLink = Uri.parse('http://www.villa-marrakech.ma/');
       id.setAttribute('link', searchLink);
       var blog = blogs.singleWhereId(id);
       expect(blog, isNotNull);
       expect(blog.link, equals(searchLink));
     });
-    test('Find Blog by Attribute Id', () {
+    test('Find blog by attribute id', () {
       var blogs = entries.blogs;
-      var searchLink = Uri.parse('http://dzenanr.github.io/');
+      var searchLink = Uri.parse('http://www.villa-marrakech.ma/');
       var blog = blogs.singleWhereAttributeId('link', searchLink);
       expect(blog, isNotNull);
       expect(blog.link, equals(searchLink));
     });
-    test('Find Blog by Link Id', () {
+    test('Find blog by link id', () {
       var blogs = entries.blogs;
-      var searchLink = Uri.parse('http://dzenanr.github.io/');
+      var searchLink = Uri.parse('http://www.villa-marrakech.ma/');
       var blog = blogs.findByLinkId(searchLink);
       expect(blog, isNotNull);
       expect(blog.link, equals(searchLink));
     });
-    test('Find blog and (not) post by title', () {
-      var blogs = entries.blogs;
-      var blogName = "Seth Ladd's Blog";
-      Blog blog = blogs.firstWhereAttribute('name', blogName);
-
-      var postTitle = "Get Up to Speed Using Angular with Dart";
-      Posts posts = blog.posts;
-      Post post = posts.firstWhereAttribute('title', postTitle);
-      expect(post, isNull);
-    });
-    test('Find blog and post by title', () {
-      var blogs = entries.blogs;
-      var blogName = "Seth Ladd's Blog";
-      Blog blog = blogs.firstWhereAttribute('name', blogName);
-
-      var postTitle =
-        "Today's @NgDirective: Get Up to Speed Using Angular with Dart";
-      Posts posts = blog.posts;
-      Post post = posts.firstWhereAttribute('title', postTitle);
-      expect(post, isNotNull);
-    });
-    /*
-    test('Find blog and post by id', () {
-      var blogs = entries.blogs;
-      var blogName = "Seth Ladd's Blog";
-      Blog blog = blogs.firstWhereAttribute('name', blogName);
-
-      var postTitle =
-        "Today's @NgDirective: Get Up to Speed Using Angular with Dart";
-      Posts posts = blog.posts;
-      Id id = new Id(posts.concept);
-      id.setParent('blog', blog);
-      id.setAttribute('title', postTitle);
-      //print('post id: ${id.toString()}');
-      Post post = posts.singleWhereId(id);
-      //Post post = posts.findById(blog, postTitle);
-      expect(post, isNotNull);
-    });
-    */
-    test('Select Blogs by Function', () {
+    test('Select blogs by function', () {
       var blogs = entries.blogs;
       var dartBlogs = blogs.selectWhere((b) => b.onDart);
       expect(dartBlogs.isEmpty, isFalse);
       expect(dartBlogs.length, equals(1));
 
-      dartBlogs.display(title:'Select Projects by Function');
+      dartBlogs.display(title:'Select blogs by function');
     });
-    test('Select Blogs by Function then Add', () {
+    test('Select blogs by function then add', () {
       var blogs = entries.blogs;
       var dartBlogs = blogs.selectWhere((b) => b.onDart);
       expect(dartBlogs.isEmpty, isFalse);
@@ -222,10 +158,10 @@ testSocialBlogging(Repo repo, String domainCode, String modelCode) {
       var added = dartBlogs.add(dartBlog);
       expect(added, isTrue);
 
-      dartBlogs.display(title: 'Select Blogs by Function then Add');
+      dartBlogs.display(title: 'Select blogs by function then add');
       blogs.display(title:'All Blogs');
     });
-    test('Select Projects by Function then Remove', () {
+    test('Select blogs by function then remove', () {
       var blogs = entries.blogs;
       var blogCount = blogs.length;
 
@@ -233,7 +169,7 @@ testSocialBlogging(Repo repo, String domainCode, String modelCode) {
       expect(dartBlogs.isEmpty, isFalse);
       expect(dartBlogs.source.isEmpty, isFalse);
 
-      var searchLink = Uri.parse('http://dzenanr.github.io/');
+      var searchLink = Uri.parse('http://code.google.com/p/dart/issues/list');
       var blog = dartBlogs.findByLinkId(searchLink);
       expect(blog, isNotNull);
       expect(blog.link, equals(searchLink));
@@ -242,17 +178,7 @@ testSocialBlogging(Repo repo, String domainCode, String modelCode) {
       expect(dartBlogs.length, equals(--dartBlogCount));
       expect(blogs.length, equals(--blogCount));
     });
-    test('Order Blogs by Name', () {
-      var blogs = entries.blogs;
-      var orderedBlogs = blogs.order();
-      expect(orderedBlogs.isEmpty, isFalse);
-      expect(orderedBlogs.length, equals(blogs.length));
-      expect(orderedBlogs.source.isEmpty, isFalse);
-      expect(orderedBlogs.source.length, equals(blogs.length));
-
-      orderedBlogs.display(title: 'Order Blogs by Name');
-    });
-    test('New Blog with Id', () {
+    test('New blog with id', () {
       var blogs = entries.blogs;
       var blogCount = blogs.length;
       var blogConcept = blogs.concept;
@@ -266,25 +192,12 @@ testSocialBlogging(Repo repo, String domainCode, String modelCode) {
 
       blog.display(prefix: 'New blog with id: ');
     });
-    test('Copy Blogs', () {
-      var blogs = entries.blogs;
-      var copiedBlogs = blogs.copy();
-      expect(copiedBlogs.isEmpty, isFalse);
-      expect(copiedBlogs.length, equals(blogs.length));
-      expect(copiedBlogs, isNot(same(blogs)));
-      copiedBlogs.forEach((cp) =>
-          expect(cp, equals(blogs.singleWhereOid(cp.oid))));
-      copiedBlogs.forEach((cp) =>
-          expect(cp, isNot(same(blogs.singleWhereId(cp.id)))));
-
-      copiedBlogs.display(title: 'Copied Blogs');
-    });
-    test('True for Every Blog', () {
+    test('True for every blog', () {
       var blogs = entries.blogs;
       expect(blogs.every((b) => b.code == null), isTrue);
       expect(blogs.every((b) => b.name != null), isTrue);
     });
-    test('Update New Blog Id with Try', () {
+    test('Update new blog id with try', () {
       var blogs = entries.blogs;
       var blogCount = blogs.length;
       var blogConcept = blogs.concept;
@@ -302,7 +215,7 @@ testSocialBlogging(Repo repo, String domainCode, String modelCode) {
         expect(blog.link, equals(beforeLinkUpdate));
       }
     });
-    test('Update New Blog Id without Try', () {
+    test('Update new blog id without try', () {
       var blogs = entries.blogs;
       var blogCount = blogs.length;
       var blogConcept = blogs.concept;
@@ -318,7 +231,7 @@ testSocialBlogging(Repo repo, String domainCode, String modelCode) {
           Uri.parse('http://japhr.blogspot.ca/search/label/dartlang'), throws);
       expect(blog.link, equals(beforeLinkUpdate));
     });
-    test('Copy Equality', () {
+    test('Copy equality', () {
       var blogs = entries.blogs;
       var blogCount = blogs.length;
       var blogConcept = blogs.concept;
@@ -338,7 +251,6 @@ testSocialBlogging(Repo repo, String domainCode, String modelCode) {
       expect(blog.link, equals(blogCopy.link));
       expect(blog.name, equals(blogCopy.name));
 
-
       expect(blog.id, isNotNull);
       expect(blogCopy.id, isNotNull);
       expect(blog.id, equals(blogCopy.id));
@@ -355,17 +267,7 @@ testSocialBlogging(Repo repo, String domainCode, String modelCode) {
       }
       expect(idsEqual, isTrue);
     });
-    test('Random Entity', () {
-      var blogs = entries.blogs;
-      var blog1 = blogs.random();
-      expect(blog1, isNotNull);
-      var blog2 = blogs.random();
-      expect(blog2, isNotNull);
-
-      blog1.display(prefix: '1');
-      blog2.display(prefix: '2');
-    });
-    test('Blog Add Action Undo and Redo', () {
+    test('Blog add action undo and redo', () {
       var blogs = entries.blogs;
       var blogCount = blogs.length;
       var blogConcept = blogs.concept;
@@ -385,7 +287,7 @@ testSocialBlogging(Repo repo, String domainCode, String modelCode) {
       action.redo();
       expect(blogs.length, equals(++blogCount));
     });
-    test('Blog Session Undo and Redo', () {
+    test('Blog session undo and redo', () {
       var blogs = entries.blogs;
       var blogCount = blogs.length;
       var blogConcept = blogs.concept;
@@ -404,7 +306,7 @@ testSocialBlogging(Repo repo, String domainCode, String modelCode) {
       session.past.redo();
       expect(blogs.length, equals(++blogCount));
     });
-    test('Blog Update Undo and Redo', () {
+    test('Blog update undo and redo', () {
       var blogs = entries.blogs;
       var blogCount = blogs.length;
       var blogConcept = blogs.concept;
@@ -433,7 +335,7 @@ testSocialBlogging(Repo repo, String domainCode, String modelCode) {
       session.past.undo();
       expect(blogs.length, equals(--blogCount));
     });
-    test('Undo and Redo Transaction', () {
+    test('Undo and redo transaction', () {
       var blogs = entries.blogs;
       var blogCount = blogs.length;
       var blogConcept = blogs.concept;
@@ -469,7 +371,7 @@ testSocialBlogging(Repo repo, String domainCode, String modelCode) {
 
       blogs.display(title:'Transaction Redone');
     });
-    test('Undo and Redo Transaction with Error', () {
+    test('Undo and redo transaction with error', () {
       var blogs = entries.blogs;
       var blogCount = blogs.length;
       var blogConcept = blogs.concept;
@@ -492,7 +394,7 @@ testSocialBlogging(Repo repo, String domainCode, String modelCode) {
       expect(done, isFalse);
       expect(blogs.length, equals(blogCount));
     });
-    test('Reactions to Project Actions', () {
+    test('Reactions to blog actions', () {
       var blogs = entries.blogs;
       var blogCount = blogs.length;
       var blogConcept = blogs.concept;
@@ -517,15 +419,10 @@ testSocialBlogging(Repo repo, String domainCode, String modelCode) {
       expect(reaction.reactedOnUpdate, isTrue);
       models.cancelActionReaction(reaction);
     });
+    
   });
 }
 
-testSocialData(SocialRepo socialRepo) {
-  testSocialBlogging(socialRepo, SocialRepo.socialDomainCode,
-      SocialRepo.socialBloggingModelCode);
-}
-
-void main() {
-  var socialRepo = new SocialRepo();
-  testSocialData(socialRepo);
-}
+void main() { 
+  testSocialBloggingBlog(new Repository(), "Social", "Blogging"); 
+} 

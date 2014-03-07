@@ -25,8 +25,7 @@ initSocialData(SocialRepo socialRepo) {
    var socialBloggingEntries = 
        socialModels.getModelEntries(SocialRepo.socialBloggingModelCode); 
    initSocialBlogging(socialBloggingEntries); 
-   socialBloggingEntries.display(); 
-   socialBloggingEntries.displayJson(); 
+   //socialBloggingEntries.display();  
 } 
  
 void main() { 

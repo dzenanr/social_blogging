@@ -1,69 +1,112 @@
-part of social_blogging;
-
-// http://www.json.org/
-// http://jsonformatter.curiousconcept.com/
-
-// lib/social/blogging/json/data.dart
-
-var socialBloggingDataJson = r'''
+part of social_blogging; 
+ 
+// http://www.json.org/ 
+// http://jsonformatter.curiousconcept.com/ 
+ 
+// lib/social/blogging/json/data.dart 
+var socialBloggingBlogEntry = r""" 
 {
    "domain":"Social",
    "model":"Blogging",
-   "entries":[
+   "entry":"Blog",
+   "entities":[
       {
-         "concept":"Blog",
-         "entities":[
+         "oid":"1394223820992",
+         "code":null,
+         "link":"http://www.dartlang.org/slides/2012/06/io12/Bullseye-Your-first-Dart-app-Codelab-GoogleIO2012.pdf",
+         "name":"hall",
+         "posts":[
             {
-               "oid":"1393437933969",
+               "blog":{
+                  "oid":"1394223820992",
+                  "parent":"Blog",
+                  "entry":"Blog"
+               },
+               "oid":"1394223820993",
                "code":null,
-               "link":"http://www.scribegriff.com/studios/",
-               "name":"scribeGriff Studios",
-               "posts":[
-                  {
-                     "blog":"1393437933969",
-                     "oid":"1393437933973",
-                     "code":null,
-                     "title":"Today's @NgDirective: Get Up to Speed Using Angular with Dart",
-                     "content":"Although I spend most of my time working with Dart using Polymer, \nit's hard not to find the announcement of AngularDart a compelling reason \nto take it out for a spin. And I confess, the more I use Angular with Dart, \nthe more I'm convinced it is going to be a major component of my Dart \ntoolbox for the foreseeable future. I had come across Jesus Rodriguez's \nintroduction to the model driven framework with his appropriately named \nblog post Why Does Angular.js Rock?. In this article, we look at the Dart \nequivalents of the examples Jesus presented.\n  ",
-                     "creationDate":"2014-02-26 13:05:33.934"
-                  },
-                  {
-                     "blog":"1393437933969",
-                     "oid":"1393437933974",
-                     "code":null,
-                     "title":"Iterables, Futures, and Future.wait() in Dart",
-                     "content":"Several days ago while working with Dart, I was coding up a problem that \nrequired that I iterate over a function that returns its value represented \nas a Future. The variables that I needed to pass to this function were read \nfrom an external file and stored in a List using a Stream. To evaluate the \nfunction for each element in the List, I was tempted to use a simple \nforEach() to pass the elements to the function returning a Future. \n  ",
-                     "creationDate":"2014-02-26 13:05:33.934"
-                  }
-               ]
+               "title":"account",
+               "content":"privacy",
+               "creationDate":"2014-03-07 15:23:40.955"
             },
             {
-               "oid":"1393437933976",
+               "blog":{
+                  "oid":"1394223820992",
+                  "parent":"Blog",
+                  "entry":"Blog"
+               },
+               "oid":"1394223820994",
                "code":null,
-               "link":"http://blog.sethladd.com/",
-               "name":"Seth Ladd's Blog",
-               "posts":[
-                  {
-                     "blog":"1393437933969",
-                     "oid":"1393437933973",
-                     "code":null,
-                     "title":"Today's @NgDirective: Get Up to Speed Using Angular with Dart",
-                     "content":"Although I spend most of my time working with Dart using Polymer, \nit's hard not to find the announcement of AngularDart a compelling reason \nto take it out for a spin. And I confess, the more I use Angular with Dart, \nthe more I'm convinced it is going to be a major component of my Dart \ntoolbox for the foreseeable future. I had come across Jesus Rodriguez's \nintroduction to the model driven framework with his appropriately named \nblog post Why Does Angular.js Rock?. In this article, we look at the Dart \nequivalents of the examples Jesus presented.\n  ",
-                     "creationDate":"2014-02-26 13:05:33.934"
-                  }
-               ]
+               "title":"job",
+               "content":"employer",
+               "creationDate":"2014-03-07 15:23:40.955"
+            }
+         ]
+      },
+      {
+         "oid":"1394223820995",
+         "code":null,
+         "link":"http://stackoverflow.com/tags/dart",
+         "name":"Dart questions",
+         "posts":[
+            {
+               "blog":{
+                  "oid":"1394223820995",
+                  "parent":"Blog",
+                  "entry":"Blog"
+               },
+               "oid":"1394223820996",
+               "code":null,
+               "title":"guest",
+               "content":"message",
+               "creationDate":"2014-03-07 15:23:40.955"
             },
             {
-               "oid":"1393437933978",
+               "blog":{
+                  "oid":"1394223820995",
+                  "parent":"Blog",
+                  "entry":"Blog"
+               },
+               "oid":"1394223820998",
                "code":null,
-               "link":"http://dzenanr.github.io/",
-               "name":"On Dart",
-               "posts":[
-
-               ]
+               "title":"notch",
+               "content":"text",
+               "creationDate":"2014-03-07 15:23:40.956"
+            }
+         ]
+      },
+      {
+         "oid":"1394223820999",
+         "code":null,
+         "link":"http://www.dartlang.org/",
+         "name":"point",
+         "posts":[
+            {
+               "blog":{
+                  "oid":"1394223820999",
+                  "parent":"Blog",
+                  "entry":"Blog"
+               },
+               "oid":"1394223821001",
+               "code":null,
+               "title":"undo",
+               "content":"vessel",
+               "creationDate":"2014-03-07 15:23:40.957"
+            },
+            {
+               "blog":{
+                  "oid":"1394223820999",
+                  "parent":"Blog",
+                  "entry":"Blog"
+               },
+               "oid":"1394223821002",
+               "code":null,
+               "title":"plate",
+               "content":"hot",
+               "creationDate":"2014-03-07 15:23:40.957"
             }
          ]
       }
    ]
-}
-''';
+} 
+"""; 
+ 

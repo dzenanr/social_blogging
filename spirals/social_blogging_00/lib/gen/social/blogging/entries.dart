@@ -8,8 +8,7 @@ class BloggingEntries extends ModelEntries {
  
   Map<String, Entities> newEntries() { 
     var entries = new Map<String, Entities>(); 
-    var concept; 
-    concept = model.concepts.singleWhereCode("Blog"); 
+    var concept = model.concepts.singleWhereCode("Blog"); 
     entries["Blog"] = new Blogs(concept); 
     return entries; 
   } 
@@ -22,7 +21,7 @@ class BloggingEntries extends ModelEntries {
     if (concept.code == "Blog") { 
       return new Blogs(concept); 
     } 
-  return null; 
+    return null; 
   } 
  
   ConceptEntity newEntity(String conceptCode) { 
@@ -33,11 +32,7 @@ class BloggingEntries extends ModelEntries {
     if (concept.code == "Blog") { 
       return new Blog(concept); 
     } 
-  return null; 
-  } 
- 
-  fromJsonToData() { 
-    fromJson(socialBloggingDataJson); 
+    return null; 
   } 
  
   Blogs get blogs => getEntry("Blog"); 

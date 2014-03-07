@@ -1,16 +1,18 @@
-part of social_blogging;
-
-// lib/social/blogging/blogs.dart
-
-class Blog extends BlogGen {
-
-  Blog(Concept concept) : super(concept);
-
-  Blog.withId(Concept concept, Uri link) :
+part of social_blogging; 
+ 
+// lib/social/blogging/blogs.dart 
+ 
+class Blog extends BlogGen { 
+ 
+  Blog(Concept concept) : super(concept); 
+ 
+  Blog.withId(Concept concept, Uri link) : 
     super.withId(concept, link);
-
+ 
+  // added after code gen - begin
+  
   bool get onDart => name.contains('Dart') ? true : false;
-
+  
   /**
    * Compares two blogs based on their names.
    * If the result is less than 0 then the first entity is less than the second,
@@ -20,12 +22,17 @@ class Blog extends BlogGen {
   int compareTo(Blog other) {
     return name.compareTo(other.name);
   }
-}
-
-class Blogs extends BlogsGen {
-
+  
+  // added after code gen - end
+ 
+} 
+ 
+class Blogs extends BlogsGen { 
+ 
   Blogs(Concept concept) : super(concept);
-
+  
+  // added after code gen - begin
+ 
   Blog findByLinkId(Uri link) {
     return singleWhereId(new Id(concept)..setAttribute('link', link));
   }
@@ -44,5 +51,8 @@ class Blogs extends BlogsGen {
     }
     return validation;
   }
-}
-
+  
+  // added after code gen - end
+ 
+} 
+ 

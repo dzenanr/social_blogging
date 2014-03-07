@@ -5,14 +5,12 @@ part of social_blogging;
 class SocialModels extends DomainModels { 
  
   SocialModels(Domain domain) : super(domain) { 
-    add(fromJsonToBloggingEntries()); 
-  } 
+    // fromJsonToModel function from dartling/lib/domain/model/transfer.json.dart 
  
-  BloggingEntries fromJsonToBloggingEntries() { 
-    return new BloggingEntries(fromJsonToModel( 
-      socialBloggingModelJson, 
-      domain, 
-      SocialRepo.socialBloggingModelCode)); 
+    Model model = fromJsonToModel(socialBloggingModelJson, domain, "Blogging"); 
+    BloggingModel bloggingModel = new BloggingModel(model); 
+    add(bloggingModel); 
+ 
   } 
  
 } 
