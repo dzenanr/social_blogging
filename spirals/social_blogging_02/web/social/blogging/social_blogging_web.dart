@@ -2,30 +2,26 @@
 // web/social/blogging/social_blogging_web.dart 
  
 import "dart:html"; 
-  
+ 
 import "package:dartling_default_app/dartling_default_app.dart"; 
+import "package:social_blogging/social_blogging.dart"; 
  
-import "package:social_blogging/social_blogging.dart";
- 
-initSocialData(SocialRepo socialRepo) { 
-   var socialModels = 
-       socialRepo.getDomainModels(SocialRepo.socialDomainCode); 
- 
-   var socialBloggingEntries = 
-       socialModels.getModelEntries(SocialRepo.socialBloggingModelCode); 
-   initSocialBlogging(socialBloggingEntries); 
-   socialBloggingEntries.display(); 
+initData(Repository repository) { 
+   var socialDomain = repository.getDomainModels("Social"); 
+   var bloggingModel = socialDomain.getModelEntries("Blogging"); 
+   bloggingModel.init(); 
+   //bloggingModel.display(); 
 } 
  
-showSocialData(SocialRepo socialRepo) { 
+showData(Repository repository) { 
    var mainView = new View(document, "main"); 
-   mainView.repo = socialRepo; 
+   mainView.repo = repository; 
    new RepoMainSection(mainView); 
 } 
  
 void main() { 
-  var socialRepo = new SocialRepo(); 
-  initSocialData(socialRepo); 
-  showSocialData(socialRepo); 
+  var repository = new Repository(); 
+  initData(repository); 
+  showData(repository); 
 } 
  

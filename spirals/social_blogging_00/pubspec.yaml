@@ -1,7 +1,7 @@
 name: social_blogging
 author: Your Name
 homepage: http://ondart.me/
-version: 0.0.1
+version: 0.0.0
 description: social_blogging application that uses dartling for its model.
 environment:
   sdk: '>=0.8.10+8 <2.0.0'

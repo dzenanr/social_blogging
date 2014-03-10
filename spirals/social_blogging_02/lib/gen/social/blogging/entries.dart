@@ -30,7 +30,7 @@ class BloggingEntries extends ModelEntries {
     if (concept.code == "User") { 
       return new Users(concept); 
     } 
-  return null; 
+    return null; 
   } 
  
   ConceptEntity newEntity(String conceptCode) { 
@@ -47,11 +47,7 @@ class BloggingEntries extends ModelEntries {
     if (concept.code == "User") { 
       return new User(concept); 
     } 
-  return null; 
-  } 
- 
-  fromJsonToData() { 
-    fromJson(socialBloggingDataJson); 
+    return null; 
   } 
  
   Blogs get blogs => getEntry("Blog"); 

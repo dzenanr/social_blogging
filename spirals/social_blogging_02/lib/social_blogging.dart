@@ -41,20 +41,19 @@ library social_blogging;
  
 import "package:dartling/dartling.dart"; 
  
-part "social/blogging/json/data.dart"; 
-part "social/blogging/json/model.dart"; 
+part "repository.dart"; 
  
-part "social/blogging/init.dart"; 
- 
-part "social/blogging/blogs.dart"; 
-part "social/blogging/posts.dart"; 
-part "social/blogging/users.dart"; 
- 
+part "gen/social/models.dart"; 
 part "gen/social/blogging/entries.dart"; 
 part "gen/social/blogging/blogs.dart"; 
 part "gen/social/blogging/posts.dart"; 
 part "gen/social/blogging/users.dart"; 
  
-part "gen/social/models.dart"; 
-part "gen/social/repository.dart"; 
+part "social/domain.dart"; 
+part "social/blogging/model.dart"; 
+part "social/blogging/blogs.dart"; 
+part "social/blogging/posts.dart"; 
+part "social/blogging/users.dart"; 
+part "social/blogging/json/data.dart"; 
+part "social/blogging/json/model.dart"; 
  

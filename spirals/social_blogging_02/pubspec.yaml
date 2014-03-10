@@ -1,11 +1,10 @@
 name: social_blogging
-version: 0.0.2
-author: Dzenan Ridjanovic <dzenanr@gmail.com>
-description: social_blogging application that uses dartling for its model.
+author: Your Name
 homepage: http://ondart.me/
+version: 0.0.1
+description: social_blogging application that uses dartling for its model.
 environment:
   sdk: '>=0.8.10+8 <2.0.0'
-documentation: http://goo.gl/TRRb0e
 dependencies:
   browser: '>=0.9.0 <0.10.0'
   dartling:
@@ -14,3 +13,4 @@ dependencies:
   dartling_default_app:
     git: 'https://github.com/dzenanr/dartling_default_app.git'
     version: '>=1.0.5 <2.0.0'
+  

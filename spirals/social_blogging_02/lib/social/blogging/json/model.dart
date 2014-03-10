@@ -105,7 +105,7 @@ var socialBloggingModelJson = r'''
                     "sequence":30,
                     "name":"email",
                     "category":"required",
-                    "type":"String",
+                    "type":"Email",
                     "init":"",
                     "essential":true,
                     "sensitive":false
