@@ -110,3 +110,6 @@ var socialBloggingBlogEntry = r"""
 } 
 """; 
  
+var socialBloggingModel = r"""
+
+""";

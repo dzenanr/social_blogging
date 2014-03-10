@@ -24,22 +24,28 @@ testSocialBloggingUser(
     tearDown(() { 
       model.clear(); 
     }); 
+ 
     test("Not empty model", () { 
       expect(model.isEmpty, isFalse); 
       expect(users.isEmpty, isFalse); 
     }); 
+ 
     test("Empty model", () { 
       model.clear(); 
       expect(model.isEmpty, isTrue); 
       expect(users.isEmpty, isTrue); 
     }); 
+ 
     test("From model entry to JSON", () { 
       var json = model.fromEntryToJson("User"); 
       expect(json, isNotNull); 
  
       print(json); 
       //model.displayEntryJson("User"); 
+      //model.displayJson(); 
+      //model.display(); 
     }); 
+ 
     test("From JSON to model entry", () { 
       var json = model.fromEntryToJson("User"); 
       users.clear(); 
@@ -49,6 +55,7 @@ testSocialBloggingUser(
  
       users.display(title: "From JSON to model entry"); 
     }); 
+ 
     test("Add user required error", () { 
       var userConcept = users.concept; 
       var userCount = users.length; 
@@ -61,6 +68,7 @@ testSocialBloggingUser(
  
       users.errors.display(title: "Add user required error"); 
     }); 
+ 
     test("Add user unique error", () { 
       var userConcept = users.concept; 
       var userCount = users.length; 
@@ -74,12 +82,14 @@ testSocialBloggingUser(
  
       users.errors.display(title: "Add user unique error"); 
     }); 
+ 
     test("Find user by password", () { 
       var randomUser = users.random(); 
       var userPassword = randomUser.password; 
       User user = users.firstWhereAttribute("password", userPassword); 
       expect(user, isNotNull); 
     }); 
+ 
     test("Select users by password", () { 
       var randomUser = users.random(); 
       var userPassword = randomUser.password; 
@@ -88,11 +98,13 @@ testSocialBloggingUser(
  
       selectedUsers.display(title: "Select users by password"); 
     }); 
+ 
     test("Sort users", () { 
       users.sort(); 
  
       users.display(title: "Sort users"); 
     }); 
+ 
     test("Order users", () { 
       var orderedUsers = users.order(); 
       expect(orderedUsers.isEmpty, isFalse); 
@@ -103,6 +115,7 @@ testSocialBloggingUser(
  
       orderedUsers.display(title: "Order users"); 
     }); 
+ 
     test("Copy users", () { 
       var copiedUsers = users.copy(); 
       expect(copiedUsers.isEmpty, isFalse); 
@@ -115,9 +128,11 @@ testSocialBloggingUser(
  
       copiedUsers.display(title: "Copy users"); 
     }); 
+ 
     test("True for every user", () { 
       expect(users.every((e) => e.password != null), isTrue); 
     }); 
+ 
     test("Random user", () { 
       var user1 = users.random(); 
       expect(user1, isNotNull); 

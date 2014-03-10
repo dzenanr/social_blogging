@@ -21,7 +21,7 @@ class Blog extends BlogGen {
    */
   int compareTo(Blog other) {
     return name.compareTo(other.name);
-  }  
+  } 
   
   // added after code gen - end 
  

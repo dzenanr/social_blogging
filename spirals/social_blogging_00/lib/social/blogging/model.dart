@@ -10,23 +10,21 @@ class BloggingModel extends BloggingEntries {
   fromJsonToBlogEntry() { 
     fromJson(socialBloggingBlogEntry); 
   } 
- 
-  Map<String, String> fromModelToJson() { 
-    var jsonEntries = new Map<String, String>(); 
-    jsonEntries["Blog"] = toJson("Blog"); 
-    return jsonEntries; 
-  } 
- 
-  fromJsonToModel(Map<String, String> jsonEntries) { 
-    String blogEntry = jsonEntries["Blog"]; 
-    fromJson(blogEntry); 
-  } 
- 
   
-  init() { 
-    // =============================== 
-    // Blog entry      
-    // =============================== 
+  fromJsonToModel() { 
+    fromJson(socialBloggingModel); 
+  }
+  
+  fromMap(Map<String, Object> entriesMap) {  
+    Map<String, Object> blogEntryMap = entriesMap["Blog"]; 
+    fromMapToEntry(blogEntryMap); 
+  }
+  
+  init() {  
+    initBlogs(); 
+  } 
+ 
+  initBlogs() {  
     var blogConcept = blogs.concept; 
  
     var blog1 = new Blog(blogConcept); 

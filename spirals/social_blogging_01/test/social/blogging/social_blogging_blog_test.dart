@@ -34,17 +34,19 @@ testSocialBloggingBlog(
       expect(blogs.isEmpty, isTrue); 
     }); 
     test("From model entry to JSON", () { 
-      var json = model.toJson("Blog"); 
+      var json = model.fromEntryToJson("Blog"); 
       expect(json, isNotNull); 
  
       print(json); 
-      model.display(); 
+      //model.displayEntryJson("Blog"); 
+      //model.displayJson();
+      //model.display(); 
     }); 
     test("From JSON to model entry", () { 
-      var json = model.toJson("Blog"); 
+      var json = model.fromEntryToJson("Blog"); 
       blogs.clear(); 
       expect(blogs.isEmpty, isTrue); 
-      model.fromJson(json); 
+      model.fromJsonToEntry(json); 
       expect(blogs.isEmpty, isFalse); 
  
       blogs.display(title: "From JSON to model entry"); 

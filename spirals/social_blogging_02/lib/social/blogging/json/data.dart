@@ -10,5 +10,9 @@ var socialBloggingBlogEntry = r"""
  
 var socialBloggingUserEntry = r""" 
  
-"""; 
+""";
+
+var socialBloggingModel = r"""
+
+""";
  

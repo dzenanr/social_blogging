@@ -24,24 +24,28 @@ testSocialBloggingBlog(
     tearDown(() { 
       model.clear(); 
     }); 
+ 
     test("Not empty model", () { 
       expect(model.isEmpty, isFalse); 
       expect(blogs.isEmpty, isFalse); 
     }); 
+ 
     test("Empty model", () { 
       model.clear(); 
       expect(model.isEmpty, isTrue); 
       expect(blogs.isEmpty, isTrue); 
     }); 
+ 
     test("From model entry to JSON", () { 
       var json = model.fromEntryToJson("Blog"); 
       expect(json, isNotNull); 
  
       print(json); 
       //model.displayEntryJson("Blog"); 
-      //model.displayJson();
-      //model.display();
+      //model.displayJson(); 
+      //model.display(); 
     }); 
+ 
     test("From JSON to model entry", () { 
       var json = model.fromEntryToJson("Blog"); 
       blogs.clear(); 
@@ -51,6 +55,7 @@ testSocialBloggingBlog(
  
       blogs.display(title: "From JSON to model entry"); 
     }); 
+ 
     test("Add blog required error", () { 
       var blogConcept = blogs.concept; 
       var blogCount = blogs.length; 
@@ -63,6 +68,7 @@ testSocialBloggingBlog(
  
       blogs.errors.display(title: "Add blog required error"); 
     }); 
+ 
     test("Add blog unique error", () { 
       var blogConcept = blogs.concept; 
       var blogCount = blogs.length; 
@@ -76,12 +82,14 @@ testSocialBloggingBlog(
  
       blogs.errors.display(title: "Add blog unique error"); 
     }); 
+ 
     test("Find blog by name", () { 
       var randomBlog = blogs.random(); 
       var blogName = randomBlog.name; 
       Blog blog = blogs.firstWhereAttribute("name", blogName); 
       expect(blog, isNotNull); 
     }); 
+ 
     test("Select blogs by name", () { 
       var randomBlog = blogs.random(); 
       var blogName = randomBlog.name; 
@@ -90,11 +98,13 @@ testSocialBloggingBlog(
  
       selectedBlogs.display(title: "Select blogs by name"); 
     }); 
+ 
     test("Sort blogs", () { 
       blogs.sort(); 
  
       blogs.display(title: "Sort blogs"); 
     }); 
+ 
     test("Order blogs", () { 
       var orderedBlogs = blogs.order(); 
       expect(orderedBlogs.isEmpty, isFalse); 
@@ -105,6 +115,7 @@ testSocialBloggingBlog(
  
       orderedBlogs.display(title: "Order blogs"); 
     }); 
+ 
     test("Copy blogs", () { 
       var copiedBlogs = blogs.copy(); 
       expect(copiedBlogs.isEmpty, isFalse); 
@@ -117,8 +128,19 @@ testSocialBloggingBlog(
  
       copiedBlogs.display(title: "Copy blogs"); 
     }); 
+ 
     test("True for every blog", () { 
       expect(blogs.every((e) => e.name != null), isTrue); 
+    }); 
+ 
+    test("Random blog", () { 
+      var blog1 = blogs.random(); 
+      expect(blog1, isNotNull); 
+      var blog2 = blogs.random(); 
+      expect(blog2, isNotNull); 
+ 
+      blog1.display(prefix: "1"); 
+      blog2.display(prefix: "2"); 
     }); 
  
   }); 

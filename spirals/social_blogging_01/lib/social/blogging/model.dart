@@ -5,28 +5,26 @@ part of social_blogging;
  
 class BloggingModel extends BloggingEntries { 
  
-  BloggingModel(Model model) : super(model); 
- 
-  fromJsonToBlogEntry() { 
-    fromJson(socialBloggingBlogEntry); 
-  } 
- 
-  Map<String, String> fromModelToJson() { 
-    var jsonEntries = new Map<String, String>(); 
-    jsonEntries["Blog"] = toJson("Blog"); 
-    return jsonEntries; 
-  } 
- 
-  fromJsonToModel(Map<String, String> jsonEntries) { 
-    String blogEntry = jsonEntries["Blog"]; 
-    fromJson(blogEntry); 
-  } 
- 
+  BloggingModel(Model model) : super(model);  
   
-  init() { 
-    // =============================== 
-    // Blog entry      
-    // =============================== 
+  fromJsonToBlogEntry() { 
+    fromJsonToEntry(socialBloggingBlogEntry); 
+  } 
+  
+  fromJsonToModel() { 
+    fromJson(socialBloggingModel); 
+  } 
+ 
+  fromMap(Map<String, Object> entriesMap) {  
+    Map<String, Object> blogEntryMap = entriesMap["Blog"]; 
+    fromMapToEntry(blogEntryMap); 
+  }
+  
+  init() {  
+    initBlogs(); 
+  } 
+
+  initBlogs() { 
     var blogConcept = blogs.concept; 
  
     var blog1 = new Blog(blogConcept); 
@@ -86,10 +84,8 @@ class BloggingModel extends BloggingEntries {
     blog3post2.content = "hot"; 
     blog3post2.creationDate = new DateTime.now(); 
     blog3post2.blog = blog3; 
-    blog3.posts.add(blog3post2); 
- 
+    blog3.posts.add(blog3post2);  
   } 
- 
  
   // added after code gen - begin 
  
