@@ -19,6 +19,9 @@ abstract class CategoryGen extends ConceptEntity<Category> {
     setChild("categories", new Categories(categoryConcept)); 
   } 
  
+  Reference get categoryReference => getReference("category"); 
+  set categoryReference(Reference reference) => setReference("category", reference); 
+  
   Category get category => getParent("category"); 
   set category(Category p) => setParent("category", p); 
   

@@ -9,11 +9,19 @@ class Following extends FollowingGen {
   Following.withId(Concept concept, User followedBy, User follows) : 
     super.withId(concept, followedBy, follows); 
  
+  // added after code gen - begin 
+ 
+  // added after code gen - end 
+ 
 } 
  
 class Followings extends FollowingsGen { 
  
   Followings(Concept concept) : super(concept); 
+ 
+  // added after code gen - begin 
+ 
+  // added after code gen - end 
  
 } 
  

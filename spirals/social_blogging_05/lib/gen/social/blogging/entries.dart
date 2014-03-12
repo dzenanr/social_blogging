@@ -46,7 +46,7 @@ class BloggingEntries extends ModelEntries {
     if (concept.code == "Following") { 
       return new Followings(concept); 
     } 
-  return null; 
+    return null; 
   } 
  
   ConceptEntity newEntity(String conceptCode) { 
@@ -75,11 +75,7 @@ class BloggingEntries extends ModelEntries {
     if (concept.code == "Following") { 
       return new Following(concept); 
     } 
-  return null; 
-  } 
- 
-  fromJsonToData() { 
-    fromJson(socialBloggingDataJson); 
+    return null; 
   } 
  
   Blogs get blogs => getEntry("Blog"); 

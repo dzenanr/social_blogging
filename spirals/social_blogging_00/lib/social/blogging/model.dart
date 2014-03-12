@@ -8,42 +8,43 @@ class BloggingModel extends BloggingEntries {
   BloggingModel(Model model) : super(model); 
  
   fromJsonToBlogEntry() { 
-    fromJson(socialBloggingBlogEntry); 
+    fromJsonToEntry(socialBloggingBlogEntry); 
   } 
-  
+ 
   fromJsonToModel() { 
     fromJson(socialBloggingModel); 
-  }
-  
-  fromMap(Map<String, Object> entriesMap) {  
+  } 
+ 
+  fromMap(Map<String, Object> entriesMap) { 
     Map<String, Object> blogEntryMap = entriesMap["Blog"]; 
     fromMapToEntry(blogEntryMap); 
-  }
-  
-  init() {  
+  } 
+ 
+  init() { 
     initBlogs(); 
   } 
  
-  initBlogs() {  
-    var blogConcept = blogs.concept; 
- 
-    var blog1 = new Blog(blogConcept); 
-    blog1.link = Uri.parse("http://www.dartlang.org/articles/dart-unit-tests/"); 
-    blog1.name = "present"; 
+  initBlogs() { 
+    var blog1 = new Blog(blogs.concept); 
+    blog1.link = Uri.parse("https://assemblymade.com/hello"); 
+    blog1.name = "restaurant"; 
     blogs.add(blog1); 
  
-    var blog2 = new Blog(blogConcept); 
-    blog2.link = Uri.parse("http://www.villa-marrakech.ma/"); 
-    blog2.name = "time"; 
+    var blog2 = new Blog(blogs.concept); 
+    blog2.link = Uri.parse("http://pub.dartlang.org/packages/neuquant"); 
+    blog2.name = "city"; 
     blogs.add(blog2); 
  
-    var blog3 = new Blog(blogConcept); 
-    blog3.link = Uri.parse("http://code.google.com/p/dart/issues/list"); 
-    blog3.name = "Dart issues"; 
+    var blog3 = new Blog(blogs.concept); 
+    blog3.link = Uri.parse("http://aralbalkan.com/notes/responsive-pixels/"); 
+    blog3.name = "crisis"; 
     blogs.add(blog3); 
  
   } 
  
+  // added after code gen - begin 
+ 
+  // added after code gen - end 
  
 } 
  

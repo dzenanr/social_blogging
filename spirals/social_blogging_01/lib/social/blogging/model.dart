@@ -5,86 +5,83 @@ part of social_blogging;
  
 class BloggingModel extends BloggingEntries { 
  
-  BloggingModel(Model model) : super(model);  
-  
+  BloggingModel(Model model) : super(model); 
+ 
   fromJsonToBlogEntry() { 
     fromJsonToEntry(socialBloggingBlogEntry); 
   } 
-  
+ 
   fromJsonToModel() { 
     fromJson(socialBloggingModel); 
   } 
  
-  fromMap(Map<String, Object> entriesMap) {  
+  fromMap(Map<String, Object> entriesMap) { 
     Map<String, Object> blogEntryMap = entriesMap["Blog"]; 
     fromMapToEntry(blogEntryMap); 
-  }
-  
-  init() {  
+  } 
+ 
+  init() { 
     initBlogs(); 
   } 
-
-  initBlogs() { 
-    var blogConcept = blogs.concept; 
  
-    var blog1 = new Blog(blogConcept); 
-    blog1.link = Uri.parse("http://www.dartlang.org/slides/2012/06/io12/Bullseye-Your-first-Dart-app-Codelab-GoogleIO2012.pdf"); 
-    blog1.name = "hall"; 
+  initBlogs() { 
+    var blog1 = new Blog(blogs.concept); 
+    blog1.link = Uri.parse("http://updates.html5rocks.com/2013/11/The-Yeoman-Monthly-Digest-1"); 
+    blog1.name = "salad"; 
     blogs.add(blog1); 
  
-    var postConcept = blog1.posts.concept; 
+    var blog1posts1 = new Post(blog1.posts.concept); 
+    blog1posts1.title = "election"; 
+    blog1posts1.content = "email"; 
+    blog1posts1.creationDate = new DateTime.now(); 
+    blog1posts1.blog = blog1; 
+    blog1.posts.add(blog1posts1); 
  
-    var blog1post1 = new Post(postConcept); 
-    blog1post1.title = "account"; 
-    blog1post1.content = "privacy"; 
-    blog1post1.creationDate = new DateTime.now(); 
-    blog1post1.blog = blog1; 
-    blog1.posts.add(blog1post1); 
+    var blog1posts2 = new Post(blog1.posts.concept); 
+    blog1posts2.title = "craving"; 
+    blog1posts2.content = "concern"; 
+    blog1posts2.creationDate = new DateTime.now(); 
+    blog1posts2.blog = blog1; 
+    blog1.posts.add(blog1posts2); 
  
-    var blog1post2 = new Post(postConcept); 
-    blog1post2.title = "job"; 
-    blog1post2.content = "employer"; 
-    blog1post2.creationDate = new DateTime.now(); 
-    blog1post2.blog = blog1; 
-    blog1.posts.add(blog1post2); 
- 
-    var blog2 = new Blog(blogConcept); 
-    blog2.link = Uri.parse("http://stackoverflow.com/tags/dart"); 
-    blog2.name = "Dart questions"; 
+    var blog2 = new Blog(blogs.concept); 
+    blog2.link = Uri.parse("http://blog.dynamicprogrammer.com/2012/09/01/first-steps-with-dart.html"); 
+    blog2.name = "head"; 
     blogs.add(blog2); 
  
-    var blog2post1 = new Post(postConcept); 
-    blog2post1.title = "guest"; 
-    blog2post1.content = "message"; 
-    blog2post1.creationDate = new DateTime.now(); 
-    blog2post1.blog = blog2; 
-    blog2.posts.add(blog2post1); 
+    var blog2posts1 = new Post(blog2.posts.concept); 
+    blog2posts1.title = "cinema"; 
+    blog2posts1.content = "agreement"; 
+    blog2posts1.creationDate = new DateTime.now(); 
+    blog2posts1.blog = blog2; 
+    blog2.posts.add(blog2posts1); 
  
-    var blog2post2 = new Post(postConcept); 
-    blog2post2.title = "notch"; 
-    blog2post2.content = "text"; 
-    blog2post2.creationDate = new DateTime.now(); 
-    blog2post2.blog = blog2; 
-    blog2.posts.add(blog2post2); 
+    var blog2posts2 = new Post(blog2.posts.concept); 
+    blog2posts2.title = "season"; 
+    blog2posts2.content = "finger"; 
+    blog2posts2.creationDate = new DateTime.now(); 
+    blog2posts2.blog = blog2; 
+    blog2.posts.add(blog2posts2); 
  
-    var blog3 = new Blog(blogConcept); 
-    blog3.link = Uri.parse("http://www.dartlang.org/"); 
-    blog3.name = "point"; 
+    var blog3 = new Blog(blogs.concept); 
+    blog3.link = Uri.parse("https://nest.com/"); 
+    blog3.name = "seed"; 
     blogs.add(blog3); 
  
-    var blog3post1 = new Post(postConcept); 
-    blog3post1.title = "undo"; 
-    blog3post1.content = "vessel"; 
-    blog3post1.creationDate = new DateTime.now(); 
-    blog3post1.blog = blog3; 
-    blog3.posts.add(blog3post1); 
+    var blog3posts1 = new Post(blog3.posts.concept); 
+    blog3posts1.title = "truck"; 
+    blog3posts1.content = "kids"; 
+    blog3posts1.creationDate = new DateTime.now(); 
+    blog3posts1.blog = blog3; 
+    blog3.posts.add(blog3posts1); 
  
-    var blog3post2 = new Post(postConcept); 
-    blog3post2.title = "plate"; 
-    blog3post2.content = "hot"; 
-    blog3post2.creationDate = new DateTime.now(); 
-    blog3post2.blog = blog3; 
-    blog3.posts.add(blog3post2);  
+    var blog3posts2 = new Post(blog3.posts.concept); 
+    blog3posts2.title = "wheat"; 
+    blog3posts2.content = "instruction"; 
+    blog3posts2.creationDate = new DateTime.now(); 
+    blog3posts2.blog = blog3; 
+    blog3.posts.add(blog3posts2); 
+ 
   } 
  
   // added after code gen - begin 

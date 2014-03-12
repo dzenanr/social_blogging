@@ -10,7 +10,7 @@ class Blog extends BlogGen {
     super.withId(concept, link); 
  
   // added after code gen - begin 
- 
+
   bool get onDart => name.contains('Dart') ? true : false;
   
   /**

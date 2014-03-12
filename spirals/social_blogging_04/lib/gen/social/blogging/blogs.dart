@@ -15,6 +15,9 @@ abstract class BlogGen extends ConceptEntity<Blog> {
     setChild("articles", new Articles(articleConcept)); 
   } 
  
+  Reference get userReference => getReference("user"); 
+  set userReference(Reference reference) => setReference("user", reference); 
+  
   User get user => getParent("user"); 
   set user(User p) => setParent("user", p); 
   

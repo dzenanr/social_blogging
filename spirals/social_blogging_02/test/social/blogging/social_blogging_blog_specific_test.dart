@@ -21,18 +21,22 @@ testSocialBloggingBlog(
     tearDown(() { 
       model.clear();
     }); 
+    
     test('From model to JSON', () {
       var modelInJson = model.toJson();  
       expect(modelInJson, isNotNull);
 
-      print(modelInJson);
-      model.display();
-    });   
+      //print(modelInJson);
+      //model.display();
+    });  
+    
     test('From JSON to model', () { 
       var users = model.users;
       var usersCount = users.length;
+      print('users count: ${usersCount}');
       var blogs = model.blogs;
       var blogsCount = blogs.length;
+      print('blogs count: ${blogsCount}');
       var userBlogsCount = new Map<User, int>();
       for (var user in users) {
         userBlogsCount[user] = user.blogs.length;
@@ -40,16 +44,18 @@ testSocialBloggingBlog(
       for (var blog in blogs) {
         expect(blog.user, isNotNull);
       }
-      Map<String, Object> modelInJson = model.toMap(); 
+      Map<String, Object> modelMap = model.toJsonMap();
+      print(modelMap);
       
       model.clear();
       expect(model.isEmpty, isTrue);   
-      model.fromMap(modelInJson);
+      model.fromJsonMap(modelMap);
       expect(model.isEmpty, isFalse);
       expect(users.isEmpty, isFalse);
       expect(users.length, equals(usersCount));
       expect(blogs.isEmpty, isFalse);
       expect(blogs.length, equals(blogsCount));   
+      model.display();
       for (var user in users) {
         expect(userBlogsCount[user], equals(user.blogs.length));
         for (var blog in user.blogs) {
@@ -59,18 +65,18 @@ testSocialBloggingBlog(
         for (var blog in userBlogs) {
           expect(blog.user, equals(user));
         }
-      }
+      }     
       for (var blog in blogs) {
         expect(blog.user, isNotNull);
         var user = users.singleWhereOid(blog.user.oid);
         expect(blog.user, equals(user));
         var userBlog = user.blogs.singleWhereOid(blog.oid);
         expect(blog, equals(userBlog));
-      }
-
+      }     
       users.display(title: 'From JSON to model users');
       blogs.display(title: 'From JSON to model blogs');
     }); 
+ 
     test('From JSON to model entry error', () {
       var users = model.users;
       var blogs = model.blogs;
@@ -85,6 +91,7 @@ testSocialBloggingBlog(
       blogs.display(title: 'From JSON to Blog entry');
       users.display(title: 'From JSON to User entry');      
     });
+    
     test('Update blog id with success', () {
       Blogs blogs = model.blogs;
       var blogCount = blogs.length;
@@ -117,6 +124,7 @@ testSocialBloggingBlog(
       expect(drBlog, isNotNull);
       expect(drBlog.link, equals(newLink));
     });
+    
     test('Update blog name with failure', () {
       Blogs blogs = model.blogs;
       var blogCount = blogs.length;
@@ -135,6 +143,7 @@ testSocialBloggingBlog(
       // Blogs.update can only be used if oid, code or id set.
       expect(() => blogs.update(blog, afterUpdateBlog), throws);
     });
+    
   }); 
 } 
  

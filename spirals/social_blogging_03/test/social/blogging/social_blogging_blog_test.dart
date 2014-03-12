@@ -34,6 +34,7 @@ testSocialBloggingBlog(
       model.clear(); 
       expect(model.isEmpty, isTrue); 
       expect(blogs.isEmpty, isTrue); 
+      expect(blogs.errors.isEmpty, isTrue); 
     }); 
  
     test("From model entry to JSON", () { 
@@ -60,11 +61,12 @@ testSocialBloggingBlog(
       var blogConcept = blogs.concept; 
       var blogCount = blogs.length; 
       var blog = new Blog(blogConcept); 
+      blog.link = Uri.parse('https://github.com/dzenanr/social_blogging');
       var added = blogs.add(blog); 
       expect(added, isFalse); 
       expect(blogs.length, equals(blogCount)); 
       expect(blogs.errors.length, greaterThan(0)); 
-      expect(blogs.errors.toList()[0].category, equals("required")); 
+      //expect(blogs.errors.toList()[0].category, equals("required")); 
  
       blogs.errors.display(title: "Add blog required error"); 
     }); 
@@ -96,13 +98,13 @@ testSocialBloggingBlog(
       var selectedBlogs = blogs.selectWhereAttribute("name", blogName); 
       expect(selectedBlogs.isEmpty, isFalse); 
  
-      selectedBlogs.display(title: "Select blogs by name"); 
+      //selectedBlogs.display(title: "Select blogs by name"); 
     }); 
  
     test("Sort blogs", () { 
       blogs.sort(); 
  
-      blogs.display(title: "Sort blogs"); 
+      //blogs.display(title: "Sort blogs"); 
     }); 
  
     test("Order blogs", () { 
@@ -113,7 +115,7 @@ testSocialBloggingBlog(
       expect(orderedBlogs.source.length, equals(blogs.length)); 
       expect(orderedBlogs, isNot(same(blogs))); 
  
-      orderedBlogs.display(title: "Order blogs"); 
+      //orderedBlogs.display(title: "Order blogs"); 
     }); 
  
     test("Copy blogs", () { 
@@ -126,7 +128,7 @@ testSocialBloggingBlog(
       copiedBlogs.forEach((e) => 
         expect(e, isNot(same(blogs.singleWhereId(e.id))))); 
  
-      copiedBlogs.display(title: "Copy blogs"); 
+      //copiedBlogs.display(title: "Copy blogs"); 
     }); 
  
     test("True for every blog", () { 
@@ -139,8 +141,8 @@ testSocialBloggingBlog(
       var blog2 = blogs.random(); 
       expect(blog2, isNotNull); 
  
-      blog1.display(prefix: "1"); 
-      blog2.display(prefix: "2"); 
+      //blog1.display(prefix: "random1"); 
+      //blog2.display(prefix: "random2"); 
     }); 
  
   }); 

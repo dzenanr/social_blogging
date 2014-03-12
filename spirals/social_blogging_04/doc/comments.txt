@@ -1,0 +1,13 @@
+
+
+Comment
+
+  /**
+   * Compares two blogs based on their texts.
+   * If the result is less than 0 then the first entity is less than the second,
+   * if it is equal to 0 they are equal and
+   * if the result is greater than 0 then the first is greater than the second.
+   */
+  int compareTo(Comment other) {
+    return text.compareTo(other.text);
+  }

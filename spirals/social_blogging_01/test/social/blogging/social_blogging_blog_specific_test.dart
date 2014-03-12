@@ -34,13 +34,13 @@ testSocialBloggingBlog(
     tearDown(() {
       model.clear();
     });
+    
     test('Add blog required error', () {
       var blogs = model.blogs;
       var blogConcept = blogs.concept;
       var blogCount = blogs.length;
       var blog = new Blog(blogConcept);
-      blog.link = Uri.parse('http://phylotic.blogspot.co.uk/');
-      expect(blog, isNotNull);
+      blog.link = Uri.parse('http://phylotic.blogspot.co.uk/');    
       var added = blogs.add(blog);
       expect(added, isFalse);
       expect(blogs.length, equals(blogCount));
@@ -48,13 +48,15 @@ testSocialBloggingBlog(
       expect(blogs.errors.toList()[0].category, equals('required'));
       blogs.errors.display(title: 'Add blog required rrror');
     });
+    
     test('Add blog unique error', () {
       var blogs = model.blogs;
       var blogConcept = blogs.concept;
       var blogCount = blogs.length;
       var blog = new Blog(blogConcept);
       expect(blog, isNotNull);
-      blog.link = Uri.parse('http://stackoverflow.com/tags/dart');
+      var randomBlog = blogs.random();
+      blog.link = randomBlog.link;
       blog.name = "My Blog";
       var added = blogs.add(blog);
       expect(added, isFalse);
@@ -63,13 +65,15 @@ testSocialBloggingBlog(
       expect(blogs.errors.toList()[0].category, equals('unique'));
       blogs.errors.display(title: 'Add blog unique error');
     });
+    
     test('Add blog required and unique error', () {
       var blogs = model.blogs;
       var blogConcept = blogs.concept;
       var blogCount = blogs.length;
       var blog = new Blog(blogConcept);
       expect(blog, isNotNull);
-      blog.link = Uri.parse('http://stackoverflow.com/tags/dart');
+      var randomBlog = blogs.random();
+      blog.link = randomBlog.link;
       var added = blogs.add(blog);
       expect(added, isFalse);
       expect(blogs.length, equals(blogCount));
@@ -78,6 +82,7 @@ testSocialBloggingBlog(
       expect(blogs.errors.toList()[1].category, equals('unique'));
       blogs.errors.display(title: 'Add blog required and unique error');
     });
+    
     test('Add blog pre validation error', () {
       var blogs = model.blogs;
       var blogConcept = blogs.concept;
@@ -93,12 +98,14 @@ testSocialBloggingBlog(
       expect(blogs.errors.toList()[0].category, equals('pre'));
       blogs.errors.display(title:'Add blog pre validation error');
     });
+    
     test('Blog not found by new oid', () {
       var dartlingOid = new Oid.ts(1345648254063);
       var blogs = model.blogs;
       Blog blog = blogs.singleWhereOid(dartlingOid);
       expect(blog, isNull);
     });
+    
     test('Find blog by oid in JSON', () {
       var json = model.toJson(); 
       var blogs = model.blogs;
@@ -112,27 +119,33 @@ testSocialBloggingBlog(
       var blog = blogs.singleWhereOid(dartlingOid);
       expect(blog, isNotNull);
     });
+    
     test('Find blog by id', () {
       var blogs = model.blogs;
       var blogConcept = blogs.concept;
       Id id = new Id(blogConcept);
       expect(id.length, equals(1));
-      var searchLink = Uri.parse('http://stackoverflow.com/tags/dart');
+      var randomBlog = blogs.random();
+      var searchLink = randomBlog.link;
       id.setAttribute('link', searchLink);
       var blog = blogs.singleWhereId(id);
       expect(blog, isNotNull);
       expect(blog.link, equals(searchLink));
     });
+    
     test('Find blog by attribute id', () {
       var blogs = model.blogs;
-      var searchLink = Uri.parse('http://stackoverflow.com/tags/dart');
+      var randomBlog = blogs.random();
+      var searchLink = randomBlog.link;
       var blog = blogs.singleWhereAttributeId('link', searchLink);
       expect(blog, isNotNull);
       expect(blog.link, equals(searchLink));
     });
+    
     test('Find blog by link id', () {
       var blogs = model.blogs;
-      var searchLink = Uri.parse('http://stackoverflow.com/tags/dart');
+      var randomBlog = blogs.random();
+      var searchLink = randomBlog.link;
       var blog = blogs.findByLinkId(searchLink);
       expect(blog, isNotNull);
       expect(blog.link, equals(searchLink));
@@ -150,6 +163,7 @@ testSocialBloggingBlog(
       Post post = posts.firstWhereAttribute('title', postTitle);
       expect(post, isNull);
     });
+    
     test('Find blog and post by title', () {
       var blogs = model.blogs;
       var randomBlog = blogs.random();
@@ -162,6 +176,7 @@ testSocialBloggingBlog(
       Post post = posts.firstWhereAttribute('title', postTitle);
       expect(post, isNotNull);
     });
+    
     test('Find blog and post by id', () {
       var blogs = model.blogs;
       var randomBlog = blogs.random();
@@ -180,14 +195,19 @@ testSocialBloggingBlog(
      
     test('Select blogs by function', () {
       var blogs = model.blogs;
+      var randomBlog = blogs.random();
+      randomBlog.name =  'On Dart';
       var dartBlogs = blogs.selectWhere((b) => b.onDart);
       expect(dartBlogs.isEmpty, isFalse);
       expect(dartBlogs.length, equals(1));
 
       dartBlogs.display(title:'Select blogs by function');
     });
+    
     test('Select blogs by function then add', () {
       var blogs = model.blogs;
+      var randomBlog = blogs.random();
+      randomBlog.name =  'On Dart';
       var dartBlogs = blogs.selectWhere((b) => b.onDart);
       expect(dartBlogs.isEmpty, isFalse);
       expect(dartBlogs.source.isEmpty, isFalse);
@@ -202,15 +222,18 @@ testSocialBloggingBlog(
       dartBlogs.display(title: 'Select blogs by function then add');
       blogs.display(title:'All Blogs');
     });
+    
     test('Select blogs by function then remove', () {
       var blogs = model.blogs;
       var blogCount = blogs.length;
 
+      var randomBlog = blogs.random();
+      randomBlog.name =  'On Dart';
       Blogs dartBlogs = blogs.selectWhere((b) => b.onDart);
       expect(dartBlogs.isEmpty, isFalse);
       expect(dartBlogs.source.isEmpty, isFalse);
 
-      var searchLink = Uri.parse('http://stackoverflow.com/tags/dart');
+      var searchLink = randomBlog.link;
       var blog = dartBlogs.findByLinkId(searchLink);
       expect(blog, isNotNull);
       expect(blog.link, equals(searchLink));
@@ -219,6 +242,7 @@ testSocialBloggingBlog(
       expect(dartBlogs.length, equals(--dartBlogCount));
       expect(blogs.length, equals(--blogCount));
     });
+    
     test('Order blogs by link', () {
       var blogs = model.blogs;
       var orderedBlogs = blogs.order((Blog a, Blog b) {
@@ -231,6 +255,7 @@ testSocialBloggingBlog(
 
       orderedBlogs.display(title: 'Order blogs by link');
     });
+    
     test('New blog with id', () {
       var blogs = model.blogs;
       var blogCount = blogs.length;
@@ -245,11 +270,13 @@ testSocialBloggingBlog(
 
       blog.display(prefix: 'New blog with id: ');
     });
+    
     test('True for every blog', () {
       var blogs = model.blogs;
       expect(blogs.every((b) => b.code == null), isTrue);
       expect(blogs.every((b) => b.name != null), isTrue);
     });
+    
     test('Update blog id with try', () {
       var blogs = model.blogs;
       var blogCount = blogs.length;
@@ -268,6 +295,7 @@ testSocialBloggingBlog(
         expect(blog.link, equals(beforeLinkUpdate));
       }
     });
+    
     test('Update blog id without try', () {
       var blogs = model.blogs;
       var blogCount = blogs.length;
@@ -284,6 +312,7 @@ testSocialBloggingBlog(
           Uri.parse('http://japhr.blogspot.ca/search/label/dartlang'), throws);
       expect(blog.link, equals(beforeLinkUpdate));
     });
+    
     test('Copy equality', () {
       var blogs = model.blogs;
       var blogCount = blogs.length;
@@ -320,6 +349,7 @@ testSocialBloggingBlog(
       }
       expect(idsEqual, isTrue);
     });
+    
     test('Blog add action undo and redo', () {
       var blogs = model.blogs;
       var blogCount = blogs.length;
@@ -340,6 +370,7 @@ testSocialBloggingBlog(
       action.redo();
       expect(blogs.length, equals(++blogCount));
     });
+    
     test('Blog session undo and redo', () {
       var blogs = model.blogs;
       var blogCount = blogs.length;
@@ -359,35 +390,37 @@ testSocialBloggingBlog(
       session.past.redo();
       expect(blogs.length, equals(++blogCount));
     });
+    
     test('Blog update undo and redo', () {
-       var blogs = model.blogs;
-       var blogCount = blogs.length;
-       var blogConcept = blogs.concept;
-       var blogLink = Uri.parse('http://shailen.github.io/');
-       var blog = new Blog.withId(blogConcept, blogLink);
-       expect(blog, isNotNull);
-       blog.name = "Shailen Tuli's blog";
+      var blogs = model.blogs;
+      var blogCount = blogs.length;
+      var blogConcept = blogs.concept;
+      var blogLink = Uri.parse('http://shailen.github.io/');
+      var blog = new Blog.withId(blogConcept, blogLink);
+      expect(blog, isNotNull);
+      blog.name = "Shailen Tuli's blog";
 
-       var addAction = new AddAction(session, blogs, blog);
-       addAction.doit();
-       expect(blogs.length, equals(++blogCount));
+      var addAction = new AddAction(session, blogs, blog);
+      addAction.doit();
+      expect(blogs.length, equals(++blogCount));
 
-       var setAction =
-           new SetAttributeAction(session, blog, 'name', 'Shailen Tuli');
-       setAction.doit();
+      var setAction =
+          new SetAttributeAction(session, blog, 'name', 'Shailen Tuli');
+      setAction.doit();
 
-       session.past.undo();
-       expect(blog.name, equals(setAction.before));
+      session.past.undo();
+      expect(blog.name, equals(setAction.before));
 
-       session.past.redo();
-       expect(blog.name, equals(setAction.after));
+      session.past.redo();
+      expect(blog.name, equals(setAction.after));
 
-       session.past.undo();
-       expect(blog.name, equals(setAction.before));
+      session.past.undo();
+      expect(blog.name, equals(setAction.before));
 
-       session.past.undo();
-       expect(blogs.length, equals(--blogCount));
-     });
+      session.past.undo();
+      expect(blogs.length, equals(--blogCount));
+    });
+    
     test('Undo and redo transaction', () {
       var blogs = model.blogs;
       var blogCount = blogs.length;
@@ -424,6 +457,7 @@ testSocialBloggingBlog(
 
       blogs.display(title:'Transaction Redone');
     });
+    
     test('Undo and redo transaction with error', () {
       var blogs = model.blogs;
       var blogCount = blogs.length;
@@ -447,6 +481,7 @@ testSocialBloggingBlog(
       expect(done, isFalse);
       expect(blogs.length, equals(blogCount));
     });
+    
     test('Reactions to blog actions', () {
       var blogs = model.blogs;
       var blogCount = blogs.length;

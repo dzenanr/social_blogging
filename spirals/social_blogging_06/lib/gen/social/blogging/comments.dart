@@ -6,6 +6,9 @@ abstract class CommentGen extends ConceptEntity<Comment> {
  
   CommentGen(Concept concept) : super.of(concept); 
  
+  Reference get articleReference => getReference("article"); 
+  set articleReference(Reference reference) => setReference("article", reference); 
+  
   Article get article => getParent("article"); 
   set article(Article p) => setParent("article", p); 
   

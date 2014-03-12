@@ -96,13 +96,13 @@ testSocialBloggingUser(
       var selectedUsers = users.selectWhereAttribute("password", userPassword); 
       expect(selectedUsers.isEmpty, isFalse); 
  
-      selectedUsers.display(title: "Select users by password"); 
+      //selectedUsers.display(title: "Select users by password"); 
     }); 
  
     test("Sort users", () { 
       users.sort(); 
  
-      users.display(title: "Sort users"); 
+      //users.display(title: "Sort users"); 
     }); 
  
     test("Order users", () { 
@@ -113,7 +113,7 @@ testSocialBloggingUser(
       expect(orderedUsers.source.length, equals(users.length)); 
       expect(orderedUsers, isNot(same(users))); 
  
-      orderedUsers.display(title: "Order users"); 
+      //orderedUsers.display(title: "Order users"); 
     }); 
  
     test("Copy users", () { 
@@ -126,7 +126,7 @@ testSocialBloggingUser(
       copiedUsers.forEach((e) => 
         expect(e, isNot(same(users.singleWhereId(e.id))))); 
  
-      copiedUsers.display(title: "Copy users"); 
+      //copiedUsers.display(title: "Copy users"); 
     }); 
  
     test("True for every user", () { 
@@ -139,8 +139,8 @@ testSocialBloggingUser(
       var user2 = users.random(); 
       expect(user2, isNotNull); 
  
-      user1.display(prefix: "1"); 
-      user2.display(prefix: "2"); 
+      //user1.display(prefix: "random1"); 
+      //user2.display(prefix: "random2"); 
     }); 
  
   }); 

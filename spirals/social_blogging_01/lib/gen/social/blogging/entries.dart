@@ -8,7 +8,8 @@ class BloggingEntries extends ModelEntries {
  
   Map<String, Entities> newEntries() { 
     var entries = new Map<String, Entities>(); 
-    var concept = model.concepts.singleWhereCode("Blog"); 
+    var concept; 
+    concept = model.concepts.singleWhereCode("Blog"); 
     entries["Blog"] = new Blogs(concept); 
     return entries; 
   } 

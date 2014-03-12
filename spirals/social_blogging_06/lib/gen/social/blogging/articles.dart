@@ -20,6 +20,9 @@ abstract class ArticleGen extends ConceptEntity<Article> {
     setChild("comments", new Comments(commentConcept)); 
   } 
  
+  Reference get blogReference => getReference("blog"); 
+  set blogReference(Reference reference) => setReference("blog", reference); 
+  
   Blog get blog => getParent("blog"); 
   set blog(Blog p) => setParent("blog", p); 
   

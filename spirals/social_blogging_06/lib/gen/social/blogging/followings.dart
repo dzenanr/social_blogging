@@ -11,8 +11,14 @@ abstract class FollowingGen extends ConceptEntity<Following> {
     setParent("follows", follows); 
   } 
  
+  Reference get followedByReference => getReference("followedBy"); 
+  set followedByReference(Reference reference) => setReference("followedBy", reference); 
+  
   User get followedBy => getParent("followedBy"); 
   set followedBy(User p) => setParent("followedBy", p); 
+  
+  Reference get followsReference => getReference("follows"); 
+  set followsReference(Reference reference) => setReference("follows", reference); 
   
   User get follows => getParent("follows"); 
   set follows(User p) => setParent("follows", p); 
