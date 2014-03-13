@@ -225,7 +225,7 @@ class BloggingModel extends BloggingEntries {
     user1follows1.follows = user1follows1Follows; 
     user1follows1.followedBy = user1; 
     user1.follows.add(user1follows1); 
-    user1follows1Follows.follows.add(user1follows1); 
+    user1follows1Follows.followedBy.add(user1follows1); 
  
     var user1follows2 = new Following(user1.follows.concept); 
     user1follows2.date = new DateTime.now(); 
@@ -233,7 +233,7 @@ class BloggingModel extends BloggingEntries {
     user1follows2.follows = user1follows2Follows; 
     user1follows2.followedBy = user1; 
     user1.follows.add(user1follows2); 
-    user1follows2Follows.follows.add(user1follows2); 
+    user1follows2Follows.followedBy.add(user1follows2); 
  
     var user2 = new User(users.concept); 
     user2.name = "slate"; 
@@ -248,7 +248,7 @@ class BloggingModel extends BloggingEntries {
     user2follows1.follows = user2follows1Follows; 
     user2follows1.followedBy = user2; 
     user2.follows.add(user2follows1); 
-    user2follows1Follows.follows.add(user2follows1); 
+    user2follows1Follows.followedBy.add(user2follows1); 
  
     var user2follows2 = new Following(user2.follows.concept); 
     user2follows2.date = new DateTime.now(); 
@@ -256,7 +256,7 @@ class BloggingModel extends BloggingEntries {
     user2follows2.follows = user2follows2Follows; 
     user2follows2.followedBy = user2; 
     user2.follows.add(user2follows2); 
-    user2follows2Follows.follows.add(user2follows2); 
+    user2follows2Follows.followedBy.add(user2follows2); 
  
     var user3 = new User(users.concept); 
     user3.name = "teaching"; 
@@ -271,7 +271,7 @@ class BloggingModel extends BloggingEntries {
     user3follows1.follows = user3follows1Follows; 
     user3follows1.followedBy = user3; 
     user3.follows.add(user3follows1); 
-    user3follows1Follows.follows.add(user3follows1); 
+    user3follows1Follows.followedBy.add(user3follows1); 
  
     var user3follows2 = new Following(user3.follows.concept); 
     user3follows2.date = new DateTime.now(); 
@@ -279,7 +279,7 @@ class BloggingModel extends BloggingEntries {
     user3follows2.follows = user3follows2Follows; 
     user3follows2.followedBy = user3; 
     user3.follows.add(user3follows2); 
-    user3follows2Follows.follows.add(user3follows2); 
+    user3follows2Follows.followedBy.add(user3follows2); 
  
   } 
  
