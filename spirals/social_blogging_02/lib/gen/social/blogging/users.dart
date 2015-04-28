@@ -4,12 +4,14 @@ part of social_blogging;
  
 abstract class UserGen extends ConceptEntity<User> { 
  
-  UserGen(Concept concept) : super.of(concept) { 
+  UserGen(Concept concept) { 
+    this.concept = concept;
     Concept blogConcept = concept.model.concepts.singleWhereCode("Blog"); 
     setChild("blogs", new Blogs(blogConcept)); 
   } 
  
-  UserGen.withId(Concept concept, String name) : super.of(concept) { 
+  UserGen.withId(Concept concept, String name) { 
+    this.concept = concept;
     setAttribute("name", name); 
     Concept blogConcept = concept.model.concepts.singleWhereCode("Blog"); 
     setChild("blogs", new Blogs(blogConcept)); 
@@ -37,7 +39,9 @@ abstract class UserGen extends ConceptEntity<User> {
  
 abstract class UsersGen extends Entities<User> { 
  
-  UsersGen(Concept concept) : super.of(concept); 
+  UsersGen(Concept concept) {
+    this.concept = concept;
+  }
  
   Users newEntities() => new Users(concept); 
   User newEntity() => new User(concept); 

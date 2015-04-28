@@ -4,14 +4,16 @@ part of social_blogging;
  
 abstract class CategoryGen extends ConceptEntity<Category> { 
  
-  CategoryGen(Concept concept) : super.of(concept) { 
+  CategoryGen(Concept concept) {
+    this.concept = concept;
     Concept tagConcept = concept.model.concepts.singleWhereCode("Tag"); 
     setChild("tags", new Tags(tagConcept)); 
     Concept categoryConcept = concept.model.concepts.singleWhereCode("Category"); 
     setChild("categories", new Categories(categoryConcept)); 
   } 
  
-  CategoryGen.withId(Concept concept, String name) : super.of(concept) { 
+  CategoryGen.withId(Concept concept, String name) { 
+    this.concept = concept;
     setAttribute("name", name); 
     Concept tagConcept = concept.model.concepts.singleWhereCode("Tag"); 
     setChild("tags", new Tags(tagConcept)); 
@@ -43,7 +45,9 @@ abstract class CategoryGen extends ConceptEntity<Category> {
  
 abstract class CategoriesGen extends Entities<Category> { 
  
-  CategoriesGen(Concept concept) : super.of(concept); 
+  CategoriesGen(Concept concept) {
+    this.concept = concept;
+  }
  
   Categories newEntities() => new Categories(concept); 
   Category newEntity() => new Category(concept); 

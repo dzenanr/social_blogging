@@ -1,7 +1,7 @@
  
 // test/social/blogging/social_blogging_user_test.dart 
  
-import "package:unittest/unittest.dart"; 
+import "package:test/test.dart"; 
 //import "package:dartling/dartling.dart"; 
 import "package:social_blogging/social_blogging.dart"; 
  
@@ -14,10 +14,8 @@ testSocialBloggingUser(
   group("Testing Social.Blogging.User", () { 
     domain = repository.getDomainModels(domainCode); 
     session = domain.newSession(); 
-    model = domain.getModelEntries(modelCode); 
-    expect(model, isNotNull); 
+    model = domain.getModelEntries(modelCode);  
     users = model.users; 
-    expect(users.isEmpty, isTrue); 
     setUp(() { 
       model.init(); 
     }); 

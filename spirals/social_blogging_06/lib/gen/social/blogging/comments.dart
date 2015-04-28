@@ -4,7 +4,9 @@ part of social_blogging;
  
 abstract class CommentGen extends ConceptEntity<Comment> { 
  
-  CommentGen(Concept concept) : super.of(concept); 
+  CommentGen(Concept concept) {
+    this.concept = concept;
+  }
  
   Reference get articleReference => getReference("article"); 
   set articleReference(Reference reference) => setReference("article", reference); 
@@ -28,7 +30,9 @@ abstract class CommentGen extends ConceptEntity<Comment> {
  
 abstract class CommentsGen extends Entities<Comment> { 
  
-  CommentsGen(Concept concept) : super.of(concept); 
+  CommentsGen(Concept concept) {
+    this.concept = concept;
+  }
  
   Comments newEntities() => new Comments(concept); 
   Comment newEntity() => new Comment(concept); 

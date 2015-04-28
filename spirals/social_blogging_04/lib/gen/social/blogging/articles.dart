@@ -4,12 +4,14 @@ part of social_blogging;
  
 abstract class ArticleGen extends ConceptEntity<Article> { 
  
-  ArticleGen(Concept concept) : super.of(concept) { 
+  ArticleGen(Concept concept) { 
+    this.concept = concept;
     Concept tagConcept = concept.model.concepts.singleWhereCode("Tag"); 
     setChild("tags", new Tags(tagConcept)); 
   } 
  
-  ArticleGen.withId(Concept concept, Blog blog, String title) : super.of(concept) { 
+  ArticleGen.withId(Concept concept, Blog blog, String title) { 
+    this.concept = concept;
     setParent("blog", blog); 
     setAttribute("title", title); 
     Concept tagConcept = concept.model.concepts.singleWhereCode("Tag"); 
@@ -47,7 +49,9 @@ abstract class ArticleGen extends ConceptEntity<Article> {
  
 abstract class ArticlesGen extends Entities<Article> { 
  
-  ArticlesGen(Concept concept) : super.of(concept); 
+  ArticlesGen(Concept concept) {
+    this.concept = concept;
+  }
  
   Articles newEntities() => new Articles(concept); 
   Article newEntity() => new Article(concept); 

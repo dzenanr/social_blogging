@@ -1,7 +1,7 @@
  
 // test/social/blogging/social_blogging_category_test.dart 
  
-import "package:unittest/unittest.dart"; 
+import "package:test/test.dart"; 
 //import "package:dartling/dartling.dart"; 
 import "package:social_blogging/social_blogging.dart"; 
  
@@ -14,10 +14,8 @@ testSocialBloggingCategory(
   group("Testing Social.Blogging.Category", () { 
     domain = repository.getDomainModels(domainCode); 
     session = domain.newSession(); 
-    model = domain.getModelEntries(modelCode); 
-    expect(model, isNotNull); 
+    model = domain.getModelEntries(modelCode);  
     categories = model.categories; 
-    expect(categories.isEmpty, isTrue); 
     setUp(() { 
       model.init(); 
     }); 

@@ -4,9 +4,12 @@ part of social_blogging;
  
 abstract class AdminGen extends ConceptEntity<Admin> { 
  
-  AdminGen(Concept concept) : super.of(concept); 
+  AdminGen(Concept concept) {
+    this.concept = concept;
+  }
  
-  AdminGen.withId(Concept concept, User isUser) : super.of(concept) { 
+  AdminGen.withId(Concept concept, User isUser) { 
+    this.concept = concept;
     setParent("isUser", isUser); 
   } 
  
@@ -26,7 +29,9 @@ abstract class AdminGen extends ConceptEntity<Admin> {
  
 abstract class AdminsGen extends Entities<Admin> { 
  
-  AdminsGen(Concept concept) : super.of(concept); 
+  AdminsGen(Concept concept) {
+    this.concept = concept;
+  }
  
   Admins newEntities() => new Admins(concept); 
   Admin newEntity() => new Admin(concept); 

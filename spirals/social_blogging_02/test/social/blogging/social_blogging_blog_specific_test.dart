@@ -1,7 +1,7 @@
  
 // test/social/blogging/social_blogging_blog_specific_test.dart 
  
-import "package:unittest/unittest.dart"; 
+import "package:test/test.dart"; 
 //import "package:dartling/dartling.dart"; 
 import "package:social_blogging/social_blogging.dart"; 
  
@@ -15,7 +15,6 @@ testSocialBloggingBlog(
       domain = repository.getDomainModels(domainCode); 
       session = domain.newSession(); 
       model = domain.getModelEntries(modelCode); 
-      expect(model, isNotNull); 
       model.init();
     }); 
     tearDown(() { 

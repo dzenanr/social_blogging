@@ -4,7 +4,9 @@ part of social_blogging;
  
 abstract class CommentGen extends ConceptEntity<Comment> { 
  
-  CommentGen(Concept concept) : super.of(concept); 
+  CommentGen(Concept concept) {
+    this.concept = concept;
+  }
  
   String get text => getAttribute("text"); 
   set text(String a) => setAttribute("text", a); 
@@ -22,7 +24,9 @@ abstract class CommentGen extends ConceptEntity<Comment> {
  
 abstract class CommentsGen extends Entities<Comment> { 
  
-  CommentsGen(Concept concept) : super.of(concept); 
+  CommentsGen(Concept concept) {
+    this.concept = concept;
+  }
  
   Comments newEntities() => new Comments(concept); 
   Comment newEntity() => new Comment(concept); 

@@ -4,9 +4,12 @@ part of social_blogging;
  
 abstract class BlogGen extends ConceptEntity<Blog> { 
  
-  BlogGen(Concept concept) : super.of(concept); 
+  BlogGen(Concept concept) {
+    this.concept = concept;
+  }
  
-  BlogGen.withId(Concept concept, Uri link) : super.of(concept) { 
+  BlogGen.withId(Concept concept, Uri link) { 
+    this.concept = concept;
     setAttribute("link", link); 
   } 
  
@@ -27,7 +30,9 @@ abstract class BlogGen extends ConceptEntity<Blog> {
  
 abstract class BlogsGen extends Entities<Blog> { 
  
-  BlogsGen(Concept concept) : super.of(concept); 
+  BlogsGen(Concept concept) {
+    this.concept = concept;
+  }
  
   Blogs newEntities() => new Blogs(concept); 
   Blog newEntity() => new Blog(concept); 

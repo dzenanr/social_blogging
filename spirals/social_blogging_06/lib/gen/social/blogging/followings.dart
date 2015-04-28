@@ -4,9 +4,12 @@ part of social_blogging;
  
 abstract class FollowingGen extends ConceptEntity<Following> { 
  
-  FollowingGen(Concept concept) : super.of(concept); 
+  FollowingGen(Concept concept) {
+    this.concept = concept;
+  }
  
-  FollowingGen.withId(Concept concept, User followedBy, User follows) : super.of(concept) { 
+  FollowingGen.withId(Concept concept, User followedBy, User follows) { 
+    this.concept = concept;
     setParent("followedBy", followedBy); 
     setParent("follows", follows); 
   } 
@@ -33,7 +36,9 @@ abstract class FollowingGen extends ConceptEntity<Following> {
  
 abstract class FollowingsGen extends Entities<Following> { 
  
-  FollowingsGen(Concept concept) : super.of(concept); 
+  FollowingsGen(Concept concept) {
+    this.concept = concept;
+  }
  
   Followings newEntities() => new Followings(concept); 
   Following newEntity() => new Following(concept); 
